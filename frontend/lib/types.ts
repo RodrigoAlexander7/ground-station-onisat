@@ -7,6 +7,7 @@ export interface SystemReading {
   wind_speed: number;
   rpm: number;
   lift_force: number;
+  [key: string]: string | number; // Index signature for chart compatibility
 }
 
 export interface SystemStatus {
