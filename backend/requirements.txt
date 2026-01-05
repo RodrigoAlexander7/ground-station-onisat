@@ -5,3 +5,12 @@ pydantic-settings
 
 # Utils
 python-dotenv
+
+# Serial communication
+pyserial
+
+# Async file operations
+aiofiles
+
+# WebSocket support (included in uvicorn[standard])
+websockets

@@ -1,0 +1,26 @@
+/**
+ * Type definitions for the Wind Tunnel Data Acquisition System
+ */
+
+export interface SystemReading {
+  timestamp: string;
+  wind_speed: number;
+  rpm: number;
+  lift_force: number;
+}
+
+export interface SystemStatus {
+  arduino_connected: boolean;
+  websocket_clients: number;
+  current_wind_speed: number;
+  is_recording: boolean;
+  readings_count: number;
+}
+
+export interface WebSocketMessage {
+  type: string;
+  data?: unknown;
+  value?: number;
+}
+
+export type ConnectionStatus = 'connecting' | 'connected' | 'disconnected' | 'error';
