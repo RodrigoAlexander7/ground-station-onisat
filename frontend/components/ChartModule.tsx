@@ -58,12 +58,12 @@ export function ChartModule({
         y: item[yKey] as number,
       }));
     }
-    
+
     // If timestamp is not the xKey, no need to format
     if (xKey !== 'timestamp') {
       return data;
     }
-    
+
     return data.map((item) => {
       // Format timestamp for display
       if (typeof item.timestamp === 'string') {
@@ -90,9 +90,9 @@ export function ChartModule({
         <h3 className="text-lg font-semibold mb-4 text-zinc-900 dark:text-zinc-100">
           {title}
         </h3>
-        
+
         {data.length === 0 ? (
-          <div 
+          <div
             className="flex items-center justify-center text-zinc-500 dark:text-zinc-400"
             style={{ height }}
           >
@@ -104,8 +104,8 @@ export function ChartModule({
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
               {showGrid && (
-                <CartesianGrid 
-                  strokeDasharray="3 3" 
+                <CartesianGrid
+                  strokeDasharray="3 3"
                   stroke="#374151"
                   opacity={0.3}
                 />
@@ -134,9 +134,11 @@ export function ChartModule({
                   color: '#f3f4f6',
                 }}
                 cursor={{ strokeDasharray: '3 3' }}
-                formatter={(value: number, name: string) => {
-                  if (name === 'x') return [value.toFixed(2), xLabel || 'X'];
-                  if (name === 'y') return [value.toFixed(2), yLabel || 'Y'];
+                formatter={(value: number | undefined, name: string | undefined) => {
+                  if (typeof value === 'number') {
+                    if (name === 'x') return [value.toFixed(2), xLabel || 'X'];
+                    if (name === 'y') return [value.toFixed(2), yLabel || 'Y'];
+                  }
                   return [value, name];
                 }}
               />
@@ -161,9 +163,9 @@ export function ChartModule({
       <h3 className="text-lg font-semibold mb-4 text-zinc-900 dark:text-zinc-100">
         {title}
       </h3>
-      
+
       {data.length === 0 ? (
-        <div 
+        <div
           className="flex items-center justify-center text-zinc-500 dark:text-zinc-400"
           style={{ height }}
         >
@@ -176,8 +178,8 @@ export function ChartModule({
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             {showGrid && (
-              <CartesianGrid 
-                strokeDasharray="3 3" 
+              <CartesianGrid
+                strokeDasharray="3 3"
                 stroke="#374151"
                 opacity={0.3}
               />
