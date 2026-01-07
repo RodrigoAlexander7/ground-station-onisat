@@ -11,7 +11,7 @@ import { SystemReading, SystemStatus } from './types';
 export function useWebSocket() {
   const wsRef = useRef<WebSocket | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   const {
     setConnectionStatus,
     setSystemStatus,
@@ -34,7 +34,7 @@ export function useWebSocket() {
       ws.onopen = () => {
         console.log('WebSocket connected');
         setConnectionStatus('connected');
-        
+
         // Clear any pending reconnect
         if (reconnectTimeoutRef.current) {
           clearTimeout(reconnectTimeoutRef.current);
@@ -44,8 +44,9 @@ export function useWebSocket() {
 
       ws.onmessage = (event) => {
         try {
+          console.log('📡 WebSocket Raw Data:', event.data);
           const data = JSON.parse(event.data);
-          
+
           // Handle different message types
           if (data.type === 'status') {
             setSystemStatus(data.data as SystemStatus);
@@ -73,7 +74,7 @@ export function useWebSocket() {
         console.log('WebSocket closed');
         setConnectionStatus('disconnected');
         wsRef.current = null;
-        
+
         // Schedule reconnection
         reconnectTimeoutRef.current = setTimeout(() => {
           console.log('Attempting to reconnect...');
@@ -93,7 +94,7 @@ export function useWebSocket() {
       clearTimeout(reconnectTimeoutRef.current);
       reconnectTimeoutRef.current = null;
     }
-    
+
     if (wsRef.current) {
       wsRef.current.close();
       wsRef.current = null;
@@ -131,7 +132,7 @@ export function useWebSocket() {
   // Auto-connect on mount
   useEffect(() => {
     connect();
-    
+
     return () => {
       disconnect();
     };

@@ -4,7 +4,6 @@ FastAPI application with WebSocket support for real-time monitoring.
 """
 import asyncio
 import logging
-import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -25,11 +24,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Determine which adapter to use based on environment
-USE_MOCK = os.getenv("USE_MOCK_ARDUINO", "true").lower() == "true"
-
-# Initialize adapters
-if USE_MOCK:
+# Initialize adapters based on configuration
+if settings.use_mock_arduino:
     logger.info("Using Mock Arduino adapter (set USE_MOCK_ARDUINO=false to use real Arduino)")
     sensor_adapter = MockArduinoAdapter()
 else:

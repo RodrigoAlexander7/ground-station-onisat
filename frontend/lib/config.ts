@@ -11,7 +11,7 @@ export const config = {
   
   // Chart configuration
   chart: {
-    maxDataPoints: 100, // Maximum data points to display in charts
+    maxDataPoints: 300, // Maximum data points to display in charts (5 minutes at 1Hz)
     animationDuration: 0, // Disable animation for real-time performance
   },
   

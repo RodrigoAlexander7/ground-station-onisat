@@ -45,22 +45,27 @@ export function ChartModule({
   showGrid = true,
   showLegend = false,
 }: ChartModuleProps) {
-  // Format data for display
+  // Format data for display - only recalculate when data or xKey changes
   const formattedData = useMemo(() => {
+    // If timestamp is not the xKey, no need to format
+    if (xKey !== 'timestamp') {
+      return data;
+    }
+    
     return data.map((item) => {
-      const formatted: Record<string, unknown> = { ...item };
-      
       // Format timestamp for display
-      if (xKey === 'timestamp' && typeof item.timestamp === 'string') {
+      if (typeof item.timestamp === 'string') {
         const date = new Date(item.timestamp);
-        formatted.displayTime = date.toLocaleTimeString('es-ES', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-        });
+        return {
+          ...item,
+          displayTime: date.toLocaleTimeString('es-ES', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          }),
+        };
       }
-      
-      return formatted;
+      return item;
     });
   }, [data, xKey]);
 

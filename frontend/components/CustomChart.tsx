@@ -23,9 +23,15 @@ export function CustomChart() {
   const yLabel = AXIS_OPTIONS.find(o => o.value === yAxis)?.label || yAxis;
 
   // Sort data by X axis for proper line rendering
+  // Only sort when xAxis changes or when necessary (not timestamp)
   const sortedData = useMemo(() => {
+    // For timestamp, data is already in chronological order
     if (xAxis === 'timestamp') {
-      return [...readings];
+      return readings;
+    }
+    // For other axes, sort only if we have data
+    if (readings.length === 0) {
+      return readings;
     }
     return [...readings].sort((a, b) => {
       const aVal = a[xAxis as keyof typeof a] as number;

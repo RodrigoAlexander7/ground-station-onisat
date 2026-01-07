@@ -100,6 +100,9 @@ class ArduinoAdapter(SensorPort):
                 line = self._serial.readline().decode('utf-8').strip()
                 
                 if line:
+                    # Log raw data received from Arduino
+                    logger.info(f"Raw data from Arduino: {line}")
+                    
                     # Parse JSON data from Arduino
                     import json
                     data = json.loads(line)
