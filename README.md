@@ -2,7 +2,7 @@
 
 Sistema de adquisición, logueo y visualización de datos en tiempo real para túnel de viento.
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ### Backend (FastAPI)
 Implementa el patrón **Puertos y Adaptadores** (Hexagonal Architecture):
@@ -47,7 +47,7 @@ frontend/
 │   └── config.ts       # Configuration
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Backend
 
@@ -82,7 +82,7 @@ pnpm dev
 
 El frontend estará en `http://localhost:3000`
 
-## ⚙️ Configuración
+## Configuración
 
 ### Backend (.env)
 ```env
@@ -103,7 +103,7 @@ NEXT_PUBLIC_WS_URL=ws://localhost:8000/ws
 NEXT_PUBLIC_API_URL=http://localhost:8000/api
 ```
 
-## 📡 Flujo de Datos
+## Flujo de Datos
 
 ```
 ┌─────────────┐      WebSocket       ┌─────────────┐
@@ -130,7 +130,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000/api
 5. **Persistencia**: Guardado en JSON (si recording activo)
 6. **Broadcast**: Envío a todos los clientes WebSocket
 
-## 📊 API Endpoints
+## API Endpoints
 
 ### REST API
 - `GET /api/status` - Estado del sistema
@@ -155,7 +155,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000/api
 {"type": "status", "data": {...}}
 ```
 
-## 🔧 Arduino Setup
+## Arduino Setup
 
 El Arduino debe enviar datos JSON por Serial:
 ```json
@@ -193,7 +193,7 @@ Los datos se guardan en `backend/data/readings.json`:
 ]
 ```
 
-## 🛠️ Desarrollo
+## Desarrollo
 
 ### Modo Mock (sin Arduino)
 Por defecto, el backend usa un adaptador mock que genera datos simulados.
