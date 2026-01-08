@@ -54,6 +54,7 @@ export default function Dashboard() {
               xLabel="Velocidad (m/s)"
               yLabel="Fuerza (N)"
               color="#8b5cf6"
+              isScatter={true}
             />
 
             {/* RPM vs Wind Speed */}
@@ -65,6 +66,7 @@ export default function Dashboard() {
               xLabel="Velocidad (m/s)"
               yLabel="RPM"
               color="#10b981"
+              isScatter={true}
             />
           </div>
 
