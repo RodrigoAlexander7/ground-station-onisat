@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import os
 
 def main():
@@ -53,18 +54,30 @@ def main():
             print(f"Skipping {filename}: Missing columns {x_col} or {y_col}")
             continue
             
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(16, 10))
         plt.plot(df[x_col], df[y_col], marker='o', linestyle='-')
         
-        plt.title(title)
-        plt.xlabel(x_label)
-        plt.ylabel(y_label)
-        plt.grid(True)
+        plt.title(title, fontsize=16)
+        plt.xlabel(x_label, fontsize=12)
+        plt.ylabel(y_label, fontsize=12)
+        
+        # Configurar la grid (rejilla)
+        plt.minorticks_on() # Activar ticks menores
+        plt.grid(True, which='major', linestyle='-', linewidth=0.8, alpha=0.8) # Grid principal
+        plt.grid(True, which='minor', linestyle=':', linewidth=0.5, alpha=0.5) # Grid secundaria (mas pequeña)
+
+        # Configurar el formato de los decimales en los ejes
+        # Por ejemplo, 2 decimales para el eje Y
+        ax = plt.gca() # Obtener el eje actual
+        ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.2f')) 
+        # Si quisieras formatear el eje X tambien (si no es fecha):
+        # ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%.2f'))
+
         plt.tight_layout()
         
         # Save to the same directory as the script
         output_path = os.path.join(script_dir, filename)
-        plt.savefig(output_path)
+        plt.savefig(output_path, dpi=300)
         plt.close()
         print(f"Saved {filename}")
 
