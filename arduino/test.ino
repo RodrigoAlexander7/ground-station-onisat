@@ -1,5 +1,4 @@
 void setup() {
-  // Velocidad rápida para no perder tiempo imprimiendo
   Serial.begin(115200); 
 
 }

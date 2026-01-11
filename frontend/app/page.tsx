@@ -25,7 +25,7 @@ export default function Dashboard() {
       {/* Header */}
       <header className="mb-6">
         <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-          🌪️ Wind Tunnel Monitor
+          Wind Tunnel Monitor
         </h1>
         <p className="text-zinc-600 dark:text-zinc-400 mt-1">
           Sistema de adquisición y visualización de datos en tiempo real
@@ -51,7 +51,7 @@ export default function Dashboard() {
               data={readings}
               xKey="timestamp"
               yKey="lift_force"
-              title="📊 Sustentación en el Tiempo"
+              title="Sustentación en el Tiempo"
               yLabel="Fuerza (N)"
               color="#3b82f6"
             />
@@ -61,7 +61,7 @@ export default function Dashboard() {
               data={readings}
               xKey="timestamp"
               yKey="rpm"
-              title="🔄 RPM en el Tiempo"
+              title="RPM en el Tiempo"
               yLabel="RPM"
               color="#f59e0b"
             />
