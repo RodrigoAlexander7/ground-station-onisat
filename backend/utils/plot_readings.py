@@ -37,16 +37,12 @@ def main():
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors='coerce')
 
-    print("Data loaded successfully. Generating plots...")
+    print("Data loaded successfully. Generating plot...")
     
     # Define plots to generate
     # Tuples of (x_col, y_col, filename, title, x_label, y_label)
     plots = [
-        ('timestamp', 'rpm', 'rpm_vs_time.png', 'RPM vs Time', 'Time', 'RPM'),
         ('timestamp', 'lift_force', 'lift_force_vs_time.png', 'Lift Force vs Time', 'Time', 'Lift Force'),
-        ('wind_speed', 'rpm', 'rpm_vs_wind_speed.png', 'RPM vs Wind Speed', 'Wind Speed', 'RPM'),
-        ('wind_speed', 'lift_force', 'lift_force_vs_wind_speed.png', 'Lift Force vs Wind Speed', 'Wind Speed', 'Lift Force'),
-        ('lift_force', 'rpm', 'rpm_vs_lift_force.png', 'RPM vs Lift Force', 'Lift Force', 'RPM') # User requested rpm vs lift_force, assuming rpm is y? "rpm vs lift_force usually implies Y vs X". I'll put RPM on Y.
     ]
 
     for x_col, y_col, filename, title, x_label, y_label in plots:
